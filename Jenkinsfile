@@ -16,12 +16,6 @@ pipeline {
 
     post {
         success {
-            // ✅ Slack Notification
-            slackSend(channel: '#johncena',
-                      color: 'good',
-                      message: "✅ SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (<${env.BUILD_URL}|Open Job>)")
-
-            // ✅ Email Notification
             emailext (
                 subject: "✅ SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
                 body: """
@@ -39,12 +33,6 @@ pipeline {
         }
 
         failure {
-            // ❌ Slack Notification
-            slackSend(channel: '#johncena',
-                      color: 'danger',
-                      message: "❌ FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (<${env.BUILD_URL}|Check Logs>)")
-
-            // ❌ Email Notification
             emailext (
                 subject: "❌ FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
                 body: """
