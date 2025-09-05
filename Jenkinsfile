@@ -34,7 +34,7 @@ pipeline {
                 Regards,  
                 Jenkins
                 """,
-                to: "santosgoal2024@gmail"
+                to: "santosgoal2024@gmail.com"
             )
         }
 
@@ -57,7 +57,7 @@ pipeline {
                 Regards,  
                 Jenkins
                 """,
-                to: "santosgoal2024@gmail"
+                to: "santosgoal2024@gmail.com"
             )
         }
 
