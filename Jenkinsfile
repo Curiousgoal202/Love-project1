@@ -14,43 +14,21 @@ pipeline {
         }
     }
 
-    post {
-        success {
-            emailext (
-                subject: "✅ SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-                body: """
-                Hello Team,
-
-                The Jenkins job *${env.JOB_NAME}* build #${env.BUILD_NUMBER} has succeeded.
-
-                👉 Check details: ${env.BUILD_URL}
-
-                Regards,  
-                Jenkins
-                """,
-                to: "santosgoal2024@gmail.com"
-            )
-        }
-
-        failure {
-            emailext (
-                subject: "❌ FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-                body: """
-                Hello Team,
-
-                The Jenkins job *${env.JOB_NAME}* build #${env.BUILD_NUMBER} has **FAILED**.
-
-                👉 Check console logs here: ${env.BUILD_URL}
-
-                Regards,  
-                Jenkins
-                """,
-                to: "santosgoal2024@gmail.com"
-            )
-        }
-
-        always {
-            echo "Build finished with status: ${currentBuild.currentResult}"
-        }
+  post {
+    success {
+        echo "✅ Trying to send SUCCESS email..."
+        emailext (
+            subject: "Build SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+            body: "Hello Team,\nThe build was successful.\n\nCheck here: ${env.BUILD_URL}",
+            to: "santosgoal2024@gmail.com"
+        )
+    }
+    failure {
+        echo "❌ Trying to send FAILURE email..."
+        emailext (
+            subject: "Build FAILURE: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+            body: "Hello Team,\nThe build has failed.\n\nCheck logs: ${env.BUILD_URL}",
+            to: "santosgoal2024@gmail.com"
+        )
     }
 }
